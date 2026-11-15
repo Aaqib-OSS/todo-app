@@ -167,6 +167,12 @@ button:focus-visible {
   font-size: 14px;
 }
 
+.filter-count {
+  margin-left: 5px;
+  color: var(--muted-text);
+  font-size: 0.8em;
+}
+
 .filter-btn:hover {
   background: var(--page-background);
 }

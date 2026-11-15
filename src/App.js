@@ -397,9 +397,9 @@ function App() {
 
       <div className="todo-filters" role="group" aria-label="Filter todos">
         {[
-          { value: "all", label: "All" },
-          { value: "active", label: "Active" },
-          { value: "completed", label: "Completed" },
+          { value: "all", label: "All", count: todos.length },
+          { value: "active", label: "Active", count: remaining },
+          { value: "completed", label: "Completed", count: completed },
         ].map((option) => (
           <button
             key={option.value}
@@ -409,6 +409,11 @@ function App() {
             onClick={() => setFilter(option.value)}
           >
             {option.label}
+            {todos.length > 0 && (
+              <span className="filter-count" aria-hidden="true">
+                ({option.count})
+              </span>
+            )}
           </button>
         ))}
         <input

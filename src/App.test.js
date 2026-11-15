@@ -403,3 +403,40 @@ test('initializes the Completed filter and search text from the URL hash', () =>
   );
   window.location.hash = '';
 });
+
+
+test('shows full-list counts on each filter tab and hides them when empty', () => {
+  window.localStorage.clear();
+  render(<App />);
+
+  const input = screen.getByPlaceholderText(/Add a new task/i);
+  ['Task A', 'Task B', 'Task C'].forEach((task) => {
+    fireEvent.change(input, { target: { value: task } });
+    fireEvent.submit(input.closest('form'));
+  });
+
+  fireEvent.click(screen.getByText('Task A'));
+
+  const allTab = screen.getByRole('button', { name: 'All' });
+  const activeTab = screen.getByRole('button', { name: 'Active' });
+  const completedTab = screen.getByRole('button', { name: 'Completed' });
+
+  expect(allTab.textContent).toBe('All(3)');
+  expect(activeTab.textContent).toBe('Active(2)');
+  expect(completedTab.textContent).toBe('Completed(1)');
+
+  expect(allTab.querySelector('.filter-count')).toHaveAttribute('aria-hidden', 'true');
+  expect(activeTab.querySelector('.filter-count')).toHaveAttribute('aria-hidden', 'true');
+  expect(completedTab.querySelector('.filter-count')).toHaveAttribute('aria-hidden', 'true');
+
+});
+
+test('hides filter counts when the todo list is empty', () => {
+  window.localStorage.clear();
+  render(<App />);
+
+  ['All', 'Active', 'Completed'].forEach((label) => {
+    const tab = screen.getByRole('button', { name: label });
+    expect(tab.querySelector('.filter-count')).toBeNull();
+  });
+});
