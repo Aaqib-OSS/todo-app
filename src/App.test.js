@@ -421,9 +421,9 @@ test('shows full-list counts on each filter tab and hides them when empty', () =
   const activeTab = screen.getByRole('button', { name: 'Active' });
   const completedTab = screen.getByRole('button', { name: 'Completed' });
 
-  expect(allTab.textContent).toBe('All(3)');
-  expect(activeTab.textContent).toBe('Active(2)');
-  expect(completedTab.textContent).toBe('Completed(1)');
+  expect(allTab).toHaveTextContent(/^All\s*\(3\)$/);
+  expect(activeTab).toHaveTextContent(/^Active\s*\(2\)$/);
+  expect(completedTab).toHaveTextContent(/^Completed\s*\(1\)$/);
 
   expect(allTab.querySelector('.filter-count')).toHaveAttribute('aria-hidden', 'true');
   expect(activeTab.querySelector('.filter-count')).toHaveAttribute('aria-hidden', 'true');
