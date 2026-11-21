@@ -173,6 +173,18 @@ button:focus-visible {
   font-size: 0.8em;
 }
 
+mark.match {
+  background-color: #fff0a6;
+  color: #3b2f00;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+:root[data-theme="dark"] mark.match {
+  background-color: #66521f;
+  color: #fff2bf;
+}
+
 .filter-btn:hover {
   background: var(--page-background);
 }
