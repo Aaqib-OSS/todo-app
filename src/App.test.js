@@ -469,3 +469,23 @@ test('clears search and keeps focus when Escape is pressed', () => {
   expect(searchInput).toHaveValue('');
   expect(searchInput).toHaveFocus();
 });
+
+test('highlights the first case-insensitive search match and preserves the rest of the todo', () => {
+  window.localStorage.clear();
+  render(<App />);
+
+  const input = screen.getByPlaceholderText(/Add a new task/i);
+  fireEvent.change(input, { target: { value: 'Buy milk today' } });
+  fireEvent.submit(input.closest('form'));
+
+  fireEvent.change(screen.getByRole('searchbox', { name: 'Search tasks' }), {
+    target: { value: 'MILK' },
+  });
+
+  const todoText = screen.getByText('Buy milk today');
+  const match = todoText.querySelector('mark.match');
+
+  expect(match).toHaveTextContent('milk');
+  expect(todoText).toHaveTextContent('Buy milk today');
+  expect(todoText.textContent).toBe('Buy milk today');
+});
