@@ -355,6 +355,23 @@ function App() {
     document.title = remaining > 0 ? `(${remaining}) todo-app` : "todo-app";
   }, [remaining]);
   const needle = query.trim().toLowerCase();
+
+  const highlightMatch = (text, searchNeedle) => {
+    if (!searchNeedle) return text;
+
+    const matchIndex = text.toLowerCase().indexOf(searchNeedle);
+    if (matchIndex === -1) return text;
+
+    return (
+      <>
+        {text.slice(0, matchIndex)}
+        <mark className="match">
+          {text.slice(matchIndex, matchIndex + searchNeedle.length)}
+        </mark>
+        {text.slice(matchIndex + searchNeedle.length)}
+      </>
+    );
+  };
   const filteredTodos = todos
     .filter((todo) => {
       if (filter === "active") return !todo.completed;
@@ -481,7 +498,7 @@ function App() {
                 onClick={() => toggleTodo(todo.id)}
                 onDoubleClick={() => startEditing(todo)}
               >
-                {todo.text}
+                {highlightMatch(todo.text, needle)}
               </span>
             )}
             <button
