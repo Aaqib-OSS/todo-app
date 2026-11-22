@@ -66,3 +66,7 @@ artifact was downloaded on the runner, and that the release appears in `#fronten
 ## Contributing
 
 Feel free to open issues or submit pull requests!
+
+## Architecture
+
+![Architecture diagram](https://media.githubusercontent.com/media/BinaryBaconLabs/todo-app-infra/main/docs/img/architecture-7b11feef2d6d.png)
