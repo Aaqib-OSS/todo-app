@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `/` focuses the search box from anywhere outside a text field, and `Escape` clears the search while it has focus (#42, #43)
+- The part of a todo that matches the search is highlighted in the list (first match, case-insensitive) (#41, #45)
+
 ## v0.4.0 - 2026-11-20
 
 Four more features from pull requests. Thanks @athashri-keny, @Rajkamal08, @mohdmunis161 and @Aaqibhafeezkhan.
