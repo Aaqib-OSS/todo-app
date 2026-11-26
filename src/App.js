@@ -106,7 +106,7 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
   const inputRef = useRef(null);
-  const searchref = useRef(null);
+  const searchRef = useRef(null);
   const importInputRef = useRef(null);
   const [importMessage, setImportMessage] = useState("");
   const [lastDeleted, setlastdeleted] = useState(null);
@@ -137,7 +137,7 @@ function App() {
       if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
       if (e.key === "/") {
         e.preventDefault();
-        searchref.current.focus();
+        searchRef.current.focus();
       }
 
       if (e.key === "n") {
@@ -440,7 +440,7 @@ function App() {
         ))}
         <input
           type="search"
-          ref={searchref}
+          ref={searchRef}
           className="search-input"
           placeholder="Search tasks..."
           aria-label="Search tasks"
@@ -449,7 +449,7 @@ function App() {
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               setQuery("");
-              searchref.current.focus();
+              searchRef.current.focus();
             }
           }}
         />
