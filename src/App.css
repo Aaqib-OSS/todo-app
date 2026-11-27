@@ -406,6 +406,14 @@ mark.match {
     gap: 6px;
   }
 
+  .todo-filters {
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    flex-basis: 100%;
+  }
+
   .todo-footer {
     align-items: flex-start;
     flex-direction: column;
